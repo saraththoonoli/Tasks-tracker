@@ -1,0 +1,54 @@
+<section>
+  <h1>Task Tracker</h1>
+  <div class="main-view d-flex">
+    <input
+      class="form-control"
+      [(ngModel)]="newTask.title"
+      placeholder="Type Your Title"
+    />
+    &nbsp;
+    <input
+      class="form-control"
+      [(ngModel)]="newTask.description"
+      placeholder="Type Description"
+    />
+    &nbsp;
+    <!-- add task -->
+    <button class="btn btn-success" (click)="addTask()">
+      Add <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+  <br />
+
+  <div class="main-view d-flex" *ngIf="editingTaskIndex !== null">
+    <input
+      class="form-control"
+      [(ngModel)]="updatedTask.title"
+      placeholder="Edit Title"
+    />
+    <input
+      class="form-control"
+      [(ngModel)]="updatedTask.description"
+      placeholder="Edit Description"
+    />
+    <!-- update -->
+    <button class="btn btn-warning" (click)="updateTask()">Update Task</button>
+  </div>
+  <br />
+
+  <div class="edit-view d-flex" *ngFor="let task of tasks; let i = index">
+    <h5>{{ task.title | uppercase }}</h5>
+    <p>{{ task.description | lowercase }}</p>
+    <div>
+      <!-- delete -->
+      <button class="btn btn-danger" (click)="deleteTask(i)">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+      &nbsp;
+      <!-- edit -->
+      <button class="btn btn-warning" (click)="editTask(i)">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+    </div>
+  </div>
+</section>
